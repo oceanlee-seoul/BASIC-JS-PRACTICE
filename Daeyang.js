@@ -16,12 +16,10 @@
 // =======================================================================================
 // 답 :
 // const num = [1, 3, 51, 58, 12, 18, 3];
-
 // const numReduce = num.reduce((acc, cur) => {
 //   return acc + cur;
 // }, 0);
 // console.log(numReduce);
-
 // result = 0;
 // const numForEach = num.forEach((a) => result += a);
 // console.log(result);
@@ -64,24 +62,7 @@
     20살 이상만 뽑아서 넣어
     ex) [{ name: '지승한', age: 33 },{ name: '신영석', age: 22 }]
 */
-// const obj = [
-//   {
-//     name: "고윤태",
-//     age: 17,
-//   },
-//   {
-//     name: "지승한",
-//     age: 33,
-//   },
-//   {
-//     name: "황대명",
-//     age: 15,
-//   },
-//   {
-//     name: "신영석",
-//     age: 22,
-//   },
-// ];
+
 // =======================================================================================
 //답 :
 // const result = obj.filter((student) => {
@@ -97,6 +78,10 @@
 
     예시 : 'name=고윤태&age=22'
 */
+// const params = {
+//   name: "고윤태",
+//   age: 22,
+// };
 // =======================================================================================
 //답:
 // Object.entries(params).forEach((v) => {
@@ -142,3 +127,96 @@
 
 // console.log(arrayFilter);
 // =======================================================================================
+// 문제 9번 : 정확히 A인 사람만 뽑아서 알려줘라
+// const point = [
+//   "고윤태:213123A",
+//   "지승한:B213",
+//   "신영석:A21321",
+//   "황대명:A",
+//   "임채건:F",
+//   "정대휘:D",
+// ];
+//배열 메서드는 상황에 맞게 쓰는 것이 좋다.
+//forEach() => 반환값이 필요 없는 것, Just 실행을 하기 위함.
+//map() => 입출력 배열의 길이가 같을 때
+//filter() => 입출력 배열의 길이가 짧아질 때
+//reduce() => 입출력 형변환이 이루어질 때
+// =======================================================================================
+// const result = point.filter((student) => {
+//   let [name, other] = student.split(":");
+//   return other === "A";
+// });
+// console.log(result);
+// =======================================================================================
+// 문제 10번 :
+// 아래 정보로 평균값 40이상인 사람만 구해내기
+// ex) [ { name: '고윤태', avg: 53 }, { name: '지승한', avg: 40 } ];
+// const grade = [
+//   { name: "고윤태", kor: 80, eng: 30, math: 50 },
+//   { name: "지승한", kor: 30, eng: 80, math: 10 },
+//   { name: "황대명", kor: 60, eng: 10, math: 30 },
+//   { name: "이대양", kor: 10, eng: 20, math: 10 },
+//   { name: "이민호", kor: 20, eng: 10, math: 5 },
+// ];
+// // =======================================================================================
+// const result = grade
+//   .map((student) => {
+//     ({ name, ...score } = student);
+//     let avg = Math.round(
+//       Object.values(score).reduce((acc, cur) => {
+//         return acc + cur;
+//       }, 0) / Object.keys(score).length
+//     );
+//     return { name: student.name, avg: avg };
+//   })
+//   .filter((student) => {
+//     return student.avg >= 40;
+//   });
+// console.log(result);
+// // =======================================================================================
+// 문제 11번 :
+/*
+    각각 카운트해서 객체로 만들기
+    ex) { a: 2, b: 3, c: 1 }
+*/
+// const array = ["a", "b", "c", "a", "b", "b"];
+// // =======================================================================================
+// const result = array.reduce((acc, cur) => {
+//   acc[cur] = (acc[cur] || 0) + 1;
+//   return acc;
+// }, {});
+
+// console.log(result);
+// // =======================================================================================
+/*문제 12번 : 
+    아래 정보들로 students의 exits값이 true 이면서 강남에 사는 친구만 걸러내기
+    ex) [
+            { name: '김윤태', address: '서울특별시 강남구', class: 'A' },
+            { name: '지윤태', address: '서울특별시 강남구', class: 'B' }
+        ]
+*/
+// const students = [
+//     { name: '고윤태', class: 'A', exits: true },
+//     { name: '김윤태', class: 'A', exits: true },
+//     { name: '최윤태', class: 'B' },
+//     { name: '박윤태', class: 'A', exits: true },
+//     { name: '이윤태', class: 'B' },
+//     { name: '지윤태', class: 'B', exits: true },
+//     { name: '황윤태', class: 'B' },
+//     { name: '우윤태', class: 'a', exits: true },
+//     { name: '신윤태', class: 'a' },
+//     { name: '정윤태', class: 'b' }
+// ];
+// const information = [
+//     { name: '고윤태', address: '서울특별시 동대문구' },
+//     { name: '김윤태', address: '서울특별시 강남구' },
+//     { name: '최윤태', address: '서울특별시 강남구' },
+//     { name: '박윤태', address: '서울특별시 중랑구' },
+//     { name: '이윤태', address: '서울특별시 마포구' },
+//     { name: '지윤태', address: '서울특별시 강남구' },
+//     { name: '황윤태', address: '서울특별시 강동구' },
+//     { name: '우윤태', address: '서울특별시 강서구' },
+//     { name: '신윤태', address: '서울특별시 영등포구' },
+//     { name: '정윤태', address: '서울특별시 중구' }
+// ];
+// // =======================================================================================

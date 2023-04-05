@@ -358,7 +358,38 @@
 // });
 //========================================================
 
-// const point = ['고윤태:213123A', '지승한:B213', '신영석:A21321', '황대명:A', '임채건:F', '정대휘:D'];
+// const point = [
+//   "고윤태:213123A",
+//   "지승한:B213",
+//   "신영석:A21321",
+//   "황대명:A",
+//   "임채건:F",
+//   "정대휘:D",
+// ];
+// 정확히 A인 사람만 뽑아서 알려줘라
+
+// let result = [];
+
+// point.forEach((v) => {
+//   const tempArray = v.split(":");
+//   if (tempArray[1] === "A") {
+//     result.push(tempArray.join(":"));
+//   }
+// });
+// console.log(result);
+
+// result = point.filter((v) => {
+//   const [name, other] = v.split(":");
+//   return other === "A";
+// });
+// console.log(result);
+
+//배열 메서드는 상황에 맞게 쓰는 것이 좋다.
+//forEach() => 반환값이 필요 없는 것, Just 실행을 하기 위함.
+//map() => 입출력 배열의 길이가 같을 때
+//filter() => 입출력 배열의 길이가 짧아질 때
+//reduce() => 입출력 형변환이 이루어질 때
+
 // const results = point.filter((text) => {
 //     const [name, grage] = text.split(":");
 
@@ -376,14 +407,50 @@
 //========================================================
 
 /*
-    아래 정보로 평균값 30이상인 사람만 구해내기
+    아래 정보로 평균값 40이상인 사람만 구해내기
     ex) [ { name: '고윤태', avg: 53 }, { name: '지승한', avg: 40 } ]
 */
 // const grade = [
-//     { name: '고윤태', kor: 80, eng: 30, math: 50 },
-//     { name: '지승한', kor: 30, eng: 80, math: 10 },
-//     { name: '황대명', kor: 60, eng: 10, math: 30 }];
+//   { name: "고윤태", kor: 80, eng: 30, math: 50 },
+//   { name: "지승한", kor: 30, eng: 80, math: 10 },
+//   { name: "황대명", kor: 60, eng: 10, math: 30 },
+//   { name: "이대양", kor: 10, eng: 20, math: 10 },
+//   { name: "이민호", kor: 20, eng: 10, math: 5 },
+// ];
+
 //========================================================
+
+//승한쓰 답
+// const result = grade.map(v => {
+//     const avg = (v.kor + v.eng + v["math"]) / 3;
+//     return { name : v.name, avg };
+// }).filter(v => v.avg>=40);
+
+// const result = [];
+
+// grade
+//   .filter((student) => {
+//     const tempArray = Object.values(student);
+//     [student, ...score] = tempArray;
+//     const avgScore = Math.round(
+//       score.reduce((acc, cur) => {
+//         return acc + cur;
+//       }, 0) / 3
+//     );
+//     return avgScore >= 40;
+//   })
+//   .map((student) => {
+//     const tempArray = Object.values(student);
+//     [student, ...score] = tempArray;
+//     const avgScore = Math.round(
+//       score.reduce((acc, cur) => {
+//         return acc + cur;
+//       }, 0) / 3
+//     );
+//     result.push({ name: student, avg: avgScore });
+//   });
+
+// console.log(result);
 
 // const avg = grade.reduce((acc, cur) => {
 //     const { kor, eng, math, name } = cur,
@@ -403,15 +470,33 @@
     각각 카운트해서 객체로 만들기
     ex) { a: 2, b: 3, c: 1 }
 */
-// const array = ['a', 'b', 'c', 'a', 'b', 'b'];
+// const array = ["a", "b", "c", "a", "b", "b"];
+
+// const setArray = array.reduce((acc, cur) => {
+//   acc[cur] = 0;
+//   return acc;
+// }, {});
+
+// array.forEach((v) => {
+//   if (v === "a") {
+//     setArray.a += 1;
+//   } else if (v === "b") {
+//     setArray.b += 1;
+//   } else if (v === "c") {
+//     setArray.c += 1;
+//   }
+// });
+
+// console.log(setArray);
+
 //========================================================
 // const counts = array.reduce((acc, cur) => {
 //     acc[cur] = (acc[cur] || 0) + 1;
-//     // if (!!acc[cur]) {
-//     //   acc[cur]++;
-//     // } else {
-//     //     acc[cur] = 1;
-//     // }
+//     if (!!acc[cur]) {
+//       acc[cur]++;
+//     } else {
+//         acc[cur] = 1;
+//     }
 //     return acc;
 // }, {});
 
@@ -1399,7 +1484,7 @@ filterYuntae();
 
 // console.log(result);
 
-// 종류별로 나눠서 카운트 
+// 종류별로 나눠서 카운트
 
 // ex) {중식:{튀김류:8,면류9},양식:{...}
 
